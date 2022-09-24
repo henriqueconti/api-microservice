@@ -9,7 +9,7 @@ exports.get = async(req, res, next)=> {
 exports.post = async(req, res, next) => {
     var options = {
         host: 'localhost',
-        port: 8081,
+        port: 8080,
         path: '/send-email',
         method: 'POST',
         headers: {
