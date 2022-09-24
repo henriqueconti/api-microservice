@@ -1,5 +1,5 @@
+const http = require('http');
 const repository = require('../repositories/caminhao-repository')
-
 
 exports.get = async(req, res, next)=> {
     const data = await repository.getCaminhao();
@@ -7,8 +7,23 @@ exports.get = async(req, res, next)=> {
 }
 
 exports.post = async(req, res, next) => {
+    var options = {
+        host: 'localhost',
+        port: 8081,
+        path: '/send-email',
+        method: 'POST',
+        headers: {
+             'Content-Type': 'application/json'
+           }
+      };
+
     try{
         await repository.create(req.body);
+
+        http.request(options, function (response) {
+            console.log('Status:', response.statusCode);
+        })
+
         res.status(201).send({message: "Caminhao cadastrado com sucesso!"})
     }catch(erro){
         res.status(400).send({message: "erro ao cadastrar caminhao"});
