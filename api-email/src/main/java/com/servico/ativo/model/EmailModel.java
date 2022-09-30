@@ -2,10 +2,17 @@ package com.servico.ativo.model;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Data;
 
 @Data
+@Document(collection = "Email")
 public class EmailModel {
+	
+	@Id
+	private String id;
 	
 	private String emailFrom;
 	
@@ -18,7 +25,13 @@ public class EmailModel {
 	private LocalDateTime sendDateEmail;
 	
 	private StatusEmail statusEmail;
-
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getEmailFrom() {
 		return emailFrom;
 	}

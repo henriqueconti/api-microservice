@@ -9,9 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.servico.ativo.model.EmailModel;
 import com.servico.ativo.model.StatusEmail;
+import com.servico.ativo.repository.EmailRepository;
 
 @Service
 public class EmailService {
+	
+	@Autowired
+	private EmailRepository emailRepository;
 	
 	@Autowired
 	private JavaMailSender emailSender;
@@ -32,7 +36,7 @@ public class EmailService {
 		}catch (Exception e) {
 			model.setStatusEmail(StatusEmail.ERROR);
 		}finally {
-			return model;
+			return emailRepository.save(model);
 		}
 	}
 }
