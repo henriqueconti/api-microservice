@@ -1,6 +1,7 @@
 package com.servico.ativo.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -23,7 +24,7 @@ public class EmailService {
 	@SuppressWarnings("finally")
 	public EmailModel sendEmail(EmailModel model) {
 		System.out.println("Enviando email");
-		model.setSendDateEmail(LocalDateTime.now());
+		model.setSendDateEmail(LocalDate.now());
 		
 		try {
 			SimpleMailMessage message = new SimpleMailMessage();
@@ -38,5 +39,15 @@ public class EmailService {
 		}finally {
 			return emailRepository.save(model);
 		}
+	}
+	
+	public List<EmailModel> getEmail(){
+		
+		return emailRepository.findAll();
+	}
+
+	public List<EmailModel> getEmailByData(LocalDate data) {
+		// TODO Auto-generated method stub
+		return emailRepository.findBySendDateEmail(data);
 	}
 }

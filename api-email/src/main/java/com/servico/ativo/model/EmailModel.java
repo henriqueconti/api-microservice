@@ -1,6 +1,6 @@
 package com.servico.ativo.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,7 +22,7 @@ public class EmailModel {
 	
 	private String text;
 	
-	private LocalDateTime sendDateEmail;
+	private LocalDate sendDateEmail;
 	
 	private StatusEmail statusEmail;
 	
@@ -56,10 +56,10 @@ public class EmailModel {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public LocalDateTime getSendDateEmail() {
+	public LocalDate getSendDateEmail() {
 		return sendDateEmail;
 	}
-	public void setSendDateEmail(LocalDateTime sendDateEmail) {
+	public void setSendDateEmail(LocalDate sendDateEmail) {
 		this.sendDateEmail = sendDateEmail;
 	}
 	public StatusEmail getStatusEmail() {
